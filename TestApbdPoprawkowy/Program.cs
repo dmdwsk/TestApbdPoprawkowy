@@ -1,11 +1,12 @@
 using TestApbdPoprawkowy.Repository;
-using TestApbdPoprawkowy.Repository;
+using TestApbdPoprawkowy.Service;
 
 
 var builder = WebApplication.CreateBuilder(args);
                     
 builder.Services.AddControllers();
-builder.Services.AddScoped<, >();
+builder.Services.AddScoped<IClientService, ClientService>();
+builder.Services.AddScoped<IClientRepository, ClientRepository>();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
@@ -15,8 +16,6 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
-
-
 app.UseAuthorization();
 
 app.MapControllers();

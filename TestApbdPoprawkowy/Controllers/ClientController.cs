@@ -17,12 +17,12 @@ public class ClientController : ControllerBase
             if (result == null) return NotFound();
             return Ok(result);
         }
-        // [HttpPost]
-        // public async Task<IActionResult> AddClientWithRental(CreateClientWithRentalRequestDto request) {
-        //     if (request.DateTo <= request.DateFrom)
-        //         return BadRequest("Invalid rental dates");
-        //     var created = await _service.CreateClientWithRentalAsync(request);
-        //     if (!created) return NotFound("Car not found");
-        //     return Created("", created);
-        // }
+        [HttpPost]
+        public async Task<IActionResult> AddClientWithRental(CreateClientWithRentalRequestDto request) {
+            if (request.DateTo <= request.DateFrom)
+                return BadRequest("Invalid rental dates");
+            var created = await _service.CreateClientWithRentalAsync(request);
+            if (!created) return NotFound("Car not found");
+            return Created("", created);
+        }
 }
